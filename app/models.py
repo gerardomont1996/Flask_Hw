@@ -25,3 +25,17 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
+class Addressbook(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    phonenumber = db.Column(db.String(100), unique=True)
+    address = db.Column(db.String(100), unique=True)
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        db.session.add(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return f'<User|{self.name}, {self.phonenumber}, {self.address}>'

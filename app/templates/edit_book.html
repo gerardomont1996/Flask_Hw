@@ -1,0 +1,50 @@
+% extends 'base.html' %}
+{% block content %}
+    <h1>Edit AddressBook{{ product.name }}</h1>
+    <form action="" method="post">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            <fieldset>
+                {{ form.name.label }}
+                {{ form.name(class='form-control' ,values=editbook.name) }}
+            </fieldset>
+            <fieldset>
+                {{ form.phonemumber.label }}
+                {{ form.price(class='form-control', value=editbook.phonenumber) }}
+            </fieldset>
+            <fieldset>
+                {{ form.address.label }}
+                {{ form.price(class='form-control', value=editbook.address) }}
+            </fieldset>
+            
+        </div>
+        {{form.submit(class='btn btn-secondary')}}
+    </form>
+
+     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProductModal">
+        Delete
+    </button>
+  
+
+    <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="deleteProductModalLabel">Delete {{ editbook.name,phonenumber,address}}?</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            You are about to delete {{ editbook.name,phonenumber,address }}. This action cannot be undone. Are you sure?
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, I am not sure</button>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+
+
+
